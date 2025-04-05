@@ -1,12 +1,12 @@
 const config = {
-    type: Phaser.AUTO, // WebGL or Canvas 자동 선택
+    type: Phaser.AUTO,
     width: 800,
     height: 600,
     backgroundColor: '#87ceeb',
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 0 },
+        gravity: {y: 0},
         debug: false
       }
     },
@@ -19,8 +19,8 @@ const config = {
   
   let player;
   let cursors;
+  let ground;
   
-  // 게임 시작
   const game = new Phaser.Game(config);
   
   function preload() {
@@ -28,9 +28,23 @@ const config = {
   }
   
   function create() {
-    player = this.physics.add.sprite(400, 420, 'player');
+    player = this.physics.add.sprite(400, 465, 'player');
     player.setScale(0.18);
+    player.setSize(600, 1150);
+
     cursors = this.input.keyboard.createCursorKeys();
+    
+    const graphics = this.add.graphics();
+    graphics.fillStyle(0x000000, 1);
+    graphics.fillRect(0, 569, 800, 50);
+    ground = this.physics.add.staticGroup();
+
+    const ground0 = ground.create(400, 585, null)
+    .setSize(50, 50)
+    .setVisible(false)
+    .refreshBody();
+
+    this.physics.add.collider(player, ground);
   }
   
   function update() {
@@ -43,8 +57,8 @@ const config = {
     }
   
     if (cursors.up.isDown) {
-      player.setVelocityY(-200);
+      player.setVelocityY(-300);
     } else if (cursors.down.isDown) {
-      player.setVelocityY(200);
+      player.setVelocityY(300);
     }
   }
