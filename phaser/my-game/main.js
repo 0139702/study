@@ -6,7 +6,7 @@ const config = {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 1500 },
+        gravity: { y: 20000 },
         debug: true
       }
     },
@@ -107,6 +107,6 @@ const config = {
     }
 
     if(Phaser.Input.Keyboard.JustDown(jumpKey) && player.body.onFloor()) { //cursors.up.isDown
-      player.setVelocityY (-1000);
+      player.setVelocityY (-5000);
     }
   }
