@@ -6,8 +6,8 @@ const config = {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: {y: 0},
-        debug: false
+        gravity: { y: 1500 },
+        debug: true
       }
     },
     scene: {
@@ -19,12 +19,16 @@ const config = {
   
   let player;
   let cursors;
+  let jumpKey;
   let ground;
+  let gameSettings = {
+    playerSpeed: 200,
+  }
   
   const game = new Phaser.Game(config);
   
   function preload() {
-    this.load.image('player', 'assets/player.png');
+    this.load.image('player', './assets/player.png');
   }
   
   function create() {
@@ -33,6 +37,7 @@ const config = {
     player.setSize(600, 1150);
 
     cursors = this.input.keyboard.createCursorKeys();
+    jumpKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
     const graphics = this.add.graphics();
     graphics.fillStyle(0x000000, 1);
@@ -40,25 +45,42 @@ const config = {
     ground = this.physics.add.staticGroup();
 
     const ground0 = ground.create(400, 585, null)
-    .setSize(50, 50)
-    .setVisible(false)
-    .refreshBody();
+      .setSize(800, 30)
+      .setVisible(false)
+      // .refreshBody();
 
-    this.physics.add.collider(player, ground);
+    this.physics.add.collider(player, ground); //ground0 영역만 인식해서 setCollidWorldBounds로 수정
   }
   
   function update() {
-    player.setVelocity(0);
+    player.setVelocity(0); //키보드를 안 눌렀을 때는 캐릭터 속도가 0이 되도록 default로 설정
   
     if (cursors.left.isDown) {
-      player.setVelocityX(-200);
+      player.setVelocityX(-gameSettings.playerSpeed);
     } else if (cursors.right.isDown) {
-      player.setVelocityX(200);
+      player.setVelocityX(gameSettings.playerSpeed);
     }
   
     if (cursors.up.isDown) {
-      player.setVelocityY(-300);
+      player.setVelocityY(-gameSettings.playerSpeed);
     } else if (cursors.down.isDown) {
-      player.setVelocityY(300);
+      player.setVelocityY(gameSettings.playerSpeed);
+    }
+
+    // if(cursors.left.isUp && cursors.right.isUp) {
+    //   player.setFrame(0);
+    //   // player.setVelocityX(0);
+    // }
+
+    player.setCollideWorldBounds(true); //this.player 때문에 오류(지역변수처럼 사용하려고 해서)
+
+    if(player.body.velocity.x > 0) { //방향키에 따라 캐릭터 뒤집기
+        player.setFlipX(true);
+    } else if (player.body.velocity.x < 0) {
+        player.setFlipX(false);
+    }
+
+    if(Phaser.Input.Keyboard.JustDown(jumpKey) && player.body.onFloor()) { //cursors.up.isDown && player.body.onFloor()
+      player.setVelocityY (-800);
     }
   }
