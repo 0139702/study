@@ -1,86 +1,101 @@
 body {
-    width: 1640px;
-    height: 2360px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
     background-color: #ffffff;
 }
 
 .keyboardContainer {
     background-color: #f0f0f0;
-    width: 100vw;
-    margin: 160px 0 0 200px;
+    width: 100%;
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 10px 5px 20px 5px;
+    box-sizing: border-box;
 }
 
 .row {
-    /* background-color: #f0f0f0; */
-    width: 100vw;
-    height: 80px;
-    display: block;
-    flex-direction: row;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    margin: 0;
+    gap: 5px;
 }
 
 .one, .two, .three, .four, .five {
-    margin: 5px 0 -5px 0;
+    margin: 10px 0 0 0;
 }
 
 button {
     background-color: #ffffff;
     border-radius: 10px;
-    width: 55px;
-    height: 65px;
-    font-size: 25px;
+    height: 80px;
+    font-size: 30px;
     outline: none;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     border-style: none;
+    flex: auto;
+    width: 60px;
+    border: none;
 }
 
-.one button {
+.one button, .hyphen, .ho, .dong {
     background-color: #b6b6b6;
 }
 
 .hyphen {
-    width: 65px;
+    width: 70px;
     margin-left: 15px;
-    background-color: #b6b6b6;
-}
-
-.three {
-    margin-left: 30px;
 }
 
 .ho {
-    width: 65px;
-    margin-left: 45px;
-    background-color: #b6b6b6;
+    /* width: 70px; */
+    /* margin-left: 60px; */
 }
 
-.shift {
-    width: 80px;
+.shift, .delete {
+    width: 120px;
 }
 
-.delete {
-    width: 80px;
-}
+/* .delete button {
+    width: 400px;
+} */
 
 .dong {
-    width: 65px;
+    width: 70px;
     margin-left: 25px;
-    background-color: #b6b6b6;
 }
 
 .change {
-    width: 120px;
-    height: 50px;
-    margin-left: 30px;
+    /* width: 50px; */
+    height: 40px;
+    margin-left: 20px;
 }
 
 .space {
-    width: 370px;
-    height: 50px;
-    margin-left: 10px;
+    /* width: 400px; */
+    height: 40px;
+    /* margin-left: 10px; */
+    margin-right: 20px;
 }
 
 button:active {
     box-shadow: 1px 1px 2px #858383, 4px 4px 2px #7c7c7c;
+}
+
+@media screen and (max-width: 2360px) {
+    button {
+        /* font-size: 25px; */
+        height: 80px;
+    }    
+
+    .shift, .delete, .dong, .change {
+        height: 80px;
+    }
+
+    .space {
+        height: 80px;
+        width: 50%;
+    }
 }
