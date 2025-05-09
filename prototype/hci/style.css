@@ -1,0 +1,86 @@
+body {
+    width: 1640px;
+    height: 2360px;
+    background-color: #ffffff;
+}
+
+.keyboardContainer {
+    background-color: #f0f0f0;
+    width: 100vw;
+    margin: 160px 0 0 200px;
+}
+
+.row {
+    /* background-color: #f0f0f0; */
+    width: 100vw;
+    height: 80px;
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.one, .two, .three, .four, .five {
+    margin: 5px 0 -5px 0;
+}
+
+button {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 55px;
+    height: 65px;
+    font-size: 25px;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    border-style: none;
+}
+
+.one button {
+    background-color: #b6b6b6;
+}
+
+.hyphen {
+    width: 65px;
+    margin-left: 15px;
+    background-color: #b6b6b6;
+}
+
+.three {
+    margin-left: 30px;
+}
+
+.ho {
+    width: 65px;
+    margin-left: 45px;
+    background-color: #b6b6b6;
+}
+
+.shift {
+    width: 80px;
+}
+
+.delete {
+    width: 80px;
+}
+
+.dong {
+    width: 65px;
+    margin-left: 25px;
+    background-color: #b6b6b6;
+}
+
+.change {
+    width: 120px;
+    height: 50px;
+    margin-left: 30px;
+}
+
+.space {
+    width: 370px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+button:active {
+    box-shadow: 1px 1px 2px #858383, 4px 4px 2px #7c7c7c;
+}
